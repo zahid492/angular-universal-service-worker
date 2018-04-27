@@ -14,7 +14,7 @@ import { UpdateService } from './updateSW';
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),
-    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
+   // ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full'},
       { path: 'lazy', loadChildren: './lazy/lazy.module#LazyModule'},
