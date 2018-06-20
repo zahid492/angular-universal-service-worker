@@ -24,13 +24,16 @@
     "build:client-and-server-bundles-admin": "ng build --prod --app 2 && ng build --prod --app 3 --output-hashing=none",
     "build:prerender": "npm run build:client-and-server-bundles && npm run webpack:server && npm run generate:prerender",
     "build:ssr": "npm run build:client-and-server-bundles && npm run webpack:server",
-    "build:ssr-admin": "npm run build:client-and-server-bundles-admin && npm run webpack:server-admin",
+    "build:ssr-admin": "npm run build:client-and-server-bundles-admin && npm run webpack:server-admin && node workbox-build-inject.js && workbox generateSW",
     "generate:prerender": "cd dist && node prerender",
     "webpack:server": "webpack --config webpack.server.config.js --progress --colors",
     "webpack:server-admin": "webpack --config webpack.server-admin.config.js --progress --colors",
     "serve:prerender": "cd dist/browser && http-server",
     "serve:ssr": "node dist/server",
-    "serve:ssr-admin": "node dist-admin/server"
+    "serve:ssr-admin": "node dist-admin/server",
+    "workbox-build-inject": "node workbox-build-inject.js",
+    "build-full-workbox": "ng build --prod && npm run workbox-build-inject",
+    "build-full-workbox-default": "ng build --prod && workbox generateSW"
   },
   "pre-commit": [
     "lint"
@@ -53,6 +56,7 @@
     "@nguniversal/module-map-ngfactory-loader": "^5.0.0-beta.8",
     "core-js": "^2.4.1",
     "rxjs": "^5.5.2",
+    "workbox-build": "^3.2.0",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {

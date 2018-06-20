@@ -11,6 +11,7 @@ morgan.log
 /tsd_typings/
 /dist/
 /dist-server/
+/dist-admin/
 /compiled/
 
 # Node #
